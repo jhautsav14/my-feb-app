@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from 'next/image';
 
 // List of romantic Shayari
 const shayariList = [
@@ -57,7 +58,8 @@ export default function CelebrationPage() {
 
             {/* Glowing Rounded Yellow Background */}
             <div className="roundedGoldenBox">
-                <img src="/co.jpg" alt="Couple Celebration" className="celebrationImage" />
+                <Image src="/co.jpg" alt="Couple Celebration" className="celebrationImage" width={500}
+                    height={300} />
             </div>
 
             {/* Typing Effect Shayari */}

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Hearts from "../../components/Hearts";
 import FunDialog from "../../components/FunDialog";
+import Image from 'next/image';
 
 export default function ResultScreen() {
     const [showDialog, setShowDialog] = useState(false);
@@ -20,7 +21,8 @@ export default function ResultScreen() {
             <h1 className="resultText">💖 You Guys Are Made for Each Other! 💖</h1>
 
             <div className="glowingCircle">
-                <img src="/couple.jpg" alt="Couple" className="resultImage" />
+                <Image src="/couple.jpg" alt="Couple" className="resultImage" width={500}
+                    height={300} />
             </div>
 
             {!confirmed && (
