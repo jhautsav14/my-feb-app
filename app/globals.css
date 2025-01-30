@@ -1,21 +1,684 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
 }
+
+/* Progress Bar & Heart */
+.progressContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.progressBar {
+  width: 200px;
+  height: 10px;
+  background-color: #ffffff50;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #ff4d6d;
+  transition: width 0.3s ease-in-out;
+}
+
+.heart {
+  font-size: 2rem;
+  transition: transform 0.5s ease-in-out;
+}
+
+.heart.unlocked {
+  transform: scale(1.5);
+  color: red;
+}
+
+/* Sparkles */
+.sparkleContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 1;
+  animation: sparkleExplosion 0.8s ease-out forwards;
+}
+
+@keyframes sparkleExplosion {
+  from {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(2) translateY(-50px);
+    opacity: 0;
+  }
+}
+
+/* Centering */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+}
+
+/* Question */
+.question {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+/* Fade Animation */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.fade-out {
+  opacity: 1;
+  animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.yesButton {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ff4d6d;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.yesButton:hover {
+  background-color: #ff1e56;
+  transform: scale(1.1);
+}
+
+.noButton {
+  position: absolute;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: gray;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.noButton:hover {
+  transform: scale(1.1);
+}
+
+/* Floating Hearts */
+.heartContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.floatingHeart {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatUp 3s ease-in-out forwards;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-200px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+
+
+/* Floating Emojis */
+.emojiContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.floatingEmoji {
+  position: absolute;
+  opacity: 0.8;
+  animation: floatUp ease-in infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-120vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+
+/* Confirmation Section */
+.confirmationContainer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.confirmText {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.confirmButtons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Buttons */
+.haButton,
+.naButton {
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.haButton {
+  background-color: #ff4d6d;
+  color: white;
+}
+
+.haButton:hover {
+  background-color: #ff1e56;
+  transform: scale(1.1);
+}
+
+.naButton {
+  background-color: gray;
+  color: white;
+}
+
+.naButton:hover {
+  transform: scale(1.1);
+}
+
+/* Dialog Overlay */
+.dialogOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialogBox {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  animation: popIn 0.3s ease-in-out;
+}
+
+.dialogBox p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff4d6d;
+  margin-bottom: 15px;
+}
+
+.dialogButtons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Pop-in Animation */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* Result Page */
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  background: linear-gradient(to right, #ff758c, #ff7eb3);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Animated Background Particles */
+.animatedBg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: floatParticles 8s infinite ease-in-out;
+}
+
+.p1 {
+  width: 12px;
+  height: 12px;
+  top: 10%;
+  left: 20%;
+  animation-duration: 6s;
+}
+
+.p2 {
+  width: 8px;
+  height: 8px;
+  top: 30%;
+  left: 80%;
+  animation-duration: 7s;
+}
+
+.p3 {
+  width: 15px;
+  height: 15px;
+  top: 60%;
+  left: 50%;
+  animation-duration: 5s;
+}
+
+.p4 {
+  width: 10px;
+  height: 10px;
+  top: 75%;
+  left: 10%;
+  animation-duration: 9s;
+}
+
+.p5 {
+  width: 14px;
+  height: 14px;
+  top: 90%;
+  left: 70%;
+  animation-duration: 10s;
+}
+
+@keyframes floatParticles {
+  from {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+
+  to {
+    transform: translateY(-40px);
+    opacity: 0.8;
+  }
+}
+
+/* Circular Glowing Image */
+.glowingCircle {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, #ff4d6d, #ff1e56);
+  box-shadow: 0 0 15px rgba(255, 77, 109, 0.8), 0 0 30px rgba(255, 30, 86, 0.8);
+  padding: 10px;
+  animation: pulseGlow 2s infinite alternate;
+}
+
+.resultImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  /* Circular Image */
+  animation: popIn 1s ease-in-out;
+}
+
+/* Glowing Effect */
+@keyframes pulseGlow {
+  from {
+    box-shadow: 0 0 15px rgba(255, 77, 109, 0.8), 0 0 30px rgba(255, 30, 86, 0.8);
+  }
+
+  to {
+    box-shadow: 0 0 25px rgba(255, 77, 109, 1), 0 0 40px rgba(255, 30, 86, 1);
+  }
+}
+
+/* Smooth Pop-in Animation */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Result Text */
+.resultText {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 20px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Floating Hearts */
+.heartContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.floatingHeart {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatUp ease-in infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-120vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Confirmation Section */
+.confirmationContainer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.confirmText {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 10px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.confirmButtons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Buttons */
+.haButton,
+.naButton {
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.haButton {
+  background-color: #ff4d6d;
+  color: white;
+}
+
+.haButton:hover {
+  background-color: #ff1e56;
+  transform: scale(1.1);
+}
+
+.naButton {
+  background-color: gray;
+  color: white;
+}
+
+.naButton:hover {
+  transform: scale(1.1);
+}
+
+
+/* /// */
+
+
+/* Celebration Page */
+.celebrationContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  background: radial-gradient(circle, #ffd700, #ffb700);
+  overflow: hidden;
+  position: relative;
+  border-radius: 20px;
+}
+
+/* Glowing Rounded Yellow Background */
+.roundedGoldenBox {
+  width: 280px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #fff59d, #ffeb3b);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 195, 0, 1);
+  padding: 10px;
+  border-radius: 20px;
+  /* Rounded corners */
+  animation: pulseGlow 2s infinite alternate;
+}
+
+.celebrationImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+  /* Rounded Corners */
+  animation: popIn 1s ease-in-out;
+}
+
+/* Shayari Typing Animation */
+.shayariText {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-top: 15px;
+  width: 80%;
+  white-space: pre-line;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: fadeIn 1.5s ease-in-out;
+  border-right: 2px solid white;
+  display: inline-block;
+}
+
+/* Party Confetti Animation */
+.confetti {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  opacity: 0.9;
+  animation: confetti-fall linear infinite;
+}
+
+.c1 {
+  top: 5%;
+  left: 10%;
+  animation-duration: 4s;
+}
+
+.c2 {
+  top: 20%;
+  left: 40%;
+  animation-duration: 5s;
+}
+
+.c3 {
+  top: 50%;
+  left: 70%;
+  animation-duration: 6s;
+}
+
+.c4 {
+  top: 80%;
+  left: 30%;
+  animation-duration: 7s;
+}
+
+.c5 {
+  top: 90%;
+  left: 90%;
+  animation-duration: 8s;
+}
+
+@keyframes confetti-fall {
+  from {
+    transform: translateY(-50px) rotate(0deg);
+  }
+
+  to {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+/* Romantic Text */
+.celebrationText {
+  font-size: 34px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Developer Credit */
+.devCredit {
+  position: absolute;
+  bottom: 10px;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  animation: fadeIn 2s ease-in-out;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+}
+
+
+/* /// */
