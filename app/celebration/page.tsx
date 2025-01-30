@@ -38,7 +38,7 @@ export default function CelebrationPage() {
                 setShayariIndex((prev) => (prev + 1) % shayariList.length); // Cycle through the Shayari
             }, 3000);
         }
-    }, [charIndex]);
+    }, [charIndex, shayariIndex]);
 
     return (
         <div className="celebrationContainer">

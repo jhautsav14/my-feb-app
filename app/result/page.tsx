@@ -12,6 +12,7 @@ export default function ResultScreen() {
     const router = useRouter();
 
     const handleHaClick = () => {
+        setConfirmed(true);
         setTimeout(() => router.push("/celebration"), 500);
     };
 
