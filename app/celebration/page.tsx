@@ -58,7 +58,7 @@ export default function CelebrationPage() {
 
             {/* Glowing Rounded Yellow Background */}
             <div className="roundedGoldenBox">
-                <Image src="/co.jpg" alt="Couple Celebration" className="celebrationImage" width={500}
+                <Image src="/io.jpg" alt="Couple Celebration" className="celebrationImage" width={500}
                     height={300} />
             </div>
 

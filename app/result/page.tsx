@@ -22,7 +22,7 @@ export default function ResultScreen() {
             <h1 className="resultText">💖 You Guys Are Made for Each Other! 💖</h1>
 
             <div className="glowingCircle">
-                <Image src="/couple.jpg" alt="Couple" className="resultImage" width={500}
+                <Image src="/io1.jpg" alt="Couple" className="resultImage" width={500}
                     height={300} />
             </div>
 
